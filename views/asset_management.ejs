@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <!-- component -->
+    <style>
+        /* Compiled dark classes from Tailwind */
+        .dark .dark\:divide-gray-700> :not([hidden])~ :not([hidden]) {
+            border-color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:bg-gray-50 {
+            background-color: rgba(249, 250, 251);
+        }
+
+        .dark .dark\:bg-gray-100 {
+            background-color: rgba(243, 244, 246);
+        }
+
+        .dark .dark\:bg-gray-600 {
+            background-color: rgba(75, 85, 99);
+        }
+
+        .dark .dark\:bg-gray-700 {
+            background-color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:bg-gray-800 {
+            background-color: rgba(31, 41, 55);
+        }
+
+        .dark .dark\:bg-gray-900 {
+            background-color: rgba(17, 24, 39);
+        }
+
+        .dark .dark\:bg-red-700 {
+            background-color: rgba(185, 28, 28);
+        }
+
+        .dark .dark\:bg-green-700 {
+            background-color: rgba(4, 120, 87);
+        }
+
+        .dark .dark\:hover\:bg-gray-200:hover {
+            background-color: rgba(229, 231, 235);
+        }
+
+        .dark .dark\:hover\:bg-gray-600:hover {
+            background-color: rgba(75, 85, 99);
+        }
+
+        .dark .dark\:hover\:bg-gray-700:hover {
+            background-color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:hover\:bg-gray-900:hover {
+            background-color: rgba(17, 24, 39);
+        }
+
+        .dark .dark\:border-gray-100 {
+            border-color: rgba(243, 244, 246);
+        }
+
+        .dark .dark\:border-gray-400 {
+            border-color: rgba(156, 163, 175);
+        }
+
+        .dark .dark\:border-gray-500 {
+            border-color: rgba(107, 114, 128);
+        }
+
+        .dark .dark\:border-gray-600 {
+            border-color: rgba(75, 85, 99);
+        }
+
+        .dark .dark\:border-gray-700 {
+            border-color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:border-gray-900 {
+            border-color: rgba(17, 24, 39);
+        }
+
+        .dark .dark\:hover\:border-gray-800:hover {
+            border-color: rgba(31, 41, 55);
+        }
+
+        .dark .dark\:text-white {
+            color: rgba(255, 255, 255);
+        }
+
+        .dark .dark\:text-gray-50 {
+            color: rgba(249, 250, 251);
+        }
+
+        .dark .dark\:text-gray-100 {
+            color: rgba(243, 244, 246);
+        }
+
+        .dark .dark\:text-gray-200 {
+            color: rgba(229, 231, 235);
+        }
+
+        .dark .dark\:text-gray-400 {
+            color: rgba(156, 163, 175);
+        }
+
+        .dark .dark\:text-gray-500 {
+            color: rgba(107, 114, 128);
+        }
+
+        .dark .dark\:text-gray-700 {
+            color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:text-gray-800 {
+            color: rgba(31, 41, 55);
+        }
+
+        .dark .dark\:text-red-100 {
+            color: rgba(254, 226, 226);
+        }
+
+        .dark .dark\:text-green-100 {
+            color: rgba(209, 250, 229);
+        }
+
+        .dark .dark\:text-blue-400 {
+            color: rgba(96, 165, 250);
+        }
+
+        .dark .group:hover .dark\:group-hover\:text-gray-500 {
+            color: rgba(107, 114, 128);
+        }
+
+        .dark .group:focus .dark\:group-focus\:text-gray-700 {
+            color: rgba(55, 65, 81);
+        }
+
+        .dark .dark\:hover\:text-gray-100:hover {
+            color: rgba(243, 244, 246);
+        }
+
+        .dark .dark\:hover\:text-blue-500:hover {
+            color: rgba(59, 130, 246);
+        }
+
+        /* Custom style */
+        .header-right {
+            width: calc(100% - 3.5rem);
+        }
+
+        .sidebar:hover {
+            width: 16rem;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .header-right {
+                width: calc(100% - 16rem);
+            }
+        }
+
+
+
+        /*mode*/
+    </style>
+</head>
+
+<body>
+    <!-- <h1>OM1</h1>
+     -->
+
+
+
+
+
+    <div x-data="setup()" :class="{ 'dark': isDark }">
+        <div
+            class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
+
+            <!-- Header -->
+            <div class="fixed w-full flex items-center justify-between h-14 text-white z-10">
+                <div
+                    class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">
+                    <!-- Logo -->
+                    <img src="https://i0.wp.com/sjbit.edu.in/wp-content/uploads/2021/08/sjbit-logo-banner-6.png?ssl=1" " alt="
+                        Logo" class="hidden md:block w-auto h-10 md:h-auto">
+
+                </div>
+
+                <div class="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
+                    <div>
+                        <div
+                            style="padding-left: 20px; font-family: Arial, sans-serif; font-size: 1.5rem; font-weight: bold;">
+                            Asset Management
+                        </div>
+
+                    </div>
+                    <ul class="flex items-center">
+
+                        <li>
+                            <button aria-hidden="true" @click="toggleTheme"
+                                class="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none">
+                                <svg x-show="isDark" width="24" height="24"
+                                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                                <svg x-show="!isDark" width="24" height="24"
+                                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>
+                            <div class="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>
+                        </li>
+                        <li>
+
+                            <form action="/logout" method="POST">
+                                <button type="submit" class="flex items-center mr-4 hover:text-blue-100">
+                                    <span class="inline-flex mr-1">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    Logout
+                                </button>
+                            </form>
+
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- ./Header -->
+
+
+            <div
+                class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
+                <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
+                    <ul class="flex flex-col py-4 space-y-1">
+                        <li class="px-5 hidden md:block">
+                            <div class="flex flex-row items-center h-8">
+                                <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Main</div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/welcome"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <i class="fas fa-tachometer-alt text-white  text-xl"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="asset_management"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <i class="fas fa-boxes text-white text-xl"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Asset Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="project_management"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <i class="fas fa-project-diagram text-white text-xl"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Project Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="department_management"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <!-- Use Font Awesome icon class -->
+                                    <i class="fas fa-building text-white text-xl"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Department Management</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="lab_management"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <!-- Use Font Awesome icon class for lab -->
+                                    <i class="fas fa-flask text-white text-xl"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Equipment Management</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright aaa@2024</p>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+                <!-- Statistics Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 p-4 gap-4">
+
+                    <!-- Total Assets -->
+                    <!-- Total Assets -->
+                    <div
+                        class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
+                        <div
+                            class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                            <i class="fas fa-database text-blue-800 dark:text-gray-800 text-xl"></i>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl">
+                                <%= totalAssetsCount %>
+                            </p>
+                            <p>Total Assets</p>
+                        </div>
+                    </div>
+
+                    <!-- Active Assets -->
+                    <div
+                        class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
+                        <div
+                            class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                            <i class="fas fa-check-circle text-blue-800 dark:text-gray-800 text-xl"></i>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl">
+                                <%= activeAssetsCount %>
+                            </p>
+                            <p>Active Assets</p>
+                        </div>
+                    </div>
+
+                    <!-- Pending Approvals -->
+
+
+                    <!-- Asset Movements -->
+
+                </div>
+                <div class="mt-8" style="padding-left: 1.5%;">
+                    <h2 class="text-lg font-semibold mb-2">Quick Links:</h2>
+                    <div class="flex space-x-4">
+                        <!-- Modal toggle -->
+                        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">
+                            Add Assets
+                        </button>
+                        <div id="generatePDF">
+                        </div>
+                        <form action="/downloadPDF" method="POST">
+                            <button
+                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="submit">Download PDF</button>
+                        </form>
+                        <div class="flex justify-end mt-4 mx-4">
+                            <input type="text" id="equipmentIdInput" placeholder="Search Equipment ID"
+                                class="w-48 border border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:border-blue-500"
+                                style="color: rgb(76, 32, 255);">
+                            <button id="searchButton"
+                                class="ml-2 px-4 py-1 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600">Search</button>
+                            <button id="clearButton"
+                                class="ml-2 px-4 py-1 bg-gray-500 text-white rounded-md focus:outline-none hover:bg-gray-600">Clear</button>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="mt-4 mx-4">
+                    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                        <div class="w-full overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr
+                                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                        <th class="px-4 py-3">Equipment ID</th>
+                                        <th class="px-4 py-3">Name</th>
+                                        <th class="px-4 py-3">Serial Number</th>
+                                        <th class="px-4 py-3">Purchase Date</th>
+                                        <th class="px-4 py-3">Cost</th>
+                                        <th class="px-4 py-3">Status</th>
+                                        <th class="px-4 py-3">Lab ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                    <% equipment.forEach(item=> { %>
+                                        <tr class="equipment-row bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
+                                            data-equipment-id="<%= item.equipment_id %>">
+                                            <td class="px-4 py-3">
+                                                <%= item.equipment_id %>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <%= item.name %>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <%= item.serial_number %>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <%= item.purchase_date %>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <%= item.cost %>
+                                            </td>
+                                            <td class="px-4 py-1">
+                                                <span class="px-2 py-1 text-xs font-semibold leading-tight
+                                                    <% if (item.status === 'Active') { %>
+                                                    text-green-700 bg-green-100 dark:bg-green-700 dark:text-green-100
+                                                    <% } else if (item.status === 'Inactive') { %>
+                                                    text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700
+                                                    <% } else if (item.status === 'Under Maintenance') { %>
+                                                    text-yellow-700 bg-yellow-100
+                                                    <% } else if (item.status === 'Disposed') { %>
+                                                    text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-100
+                                                    <% } %>
+                                                    rounded-full">
+                                                    <%= item.status %>
+                                                </span>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <%= item.lab_id %>
+                                            </td>
+                                            <td class="px-4 py-1">
+                                                <a href="/edit_asset/<%= item.equipment_id %>" class="btn-edit">Edit</a>
+                                                <button onclick="deleteRecord(<%= item.equipment_id %>)"
+                                                    class="text-red-600 hover:text-red-900">Delete</button>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!-- Pagination section if needed -->
+                    </div>
+                    <!-- Edit Asset Form -->
+
+
+
+                    <br>
+
+
+
+                    <!-- Main modal -->
+                    <div id="crud-modal" tabindex="-1" aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-md max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div
+                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Assets</h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-toggle="crud-modal">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <form id="addAssetForm" class="p-4 md:p-5" method="POST" action="/addAsset"
+                                    onsubmit="showSuccessMessage();">
+                                    <div class="grid gap-4 mb-4 grid-cols-2">
+                                        <div class="col-span-2">
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                            <input type="text" name="name" id="name"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Type equipment name" required="">
+                                        </div>
+                                        <div class="col-span-2">
+                                            <label for="serialNumber"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial
+                                                Number</label>
+                                            <input type="text" name="serialNumber" id="serialNumber"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="SJBIT/*" required="">
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="cost"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cost</label>
+                                            <input type="number" name="cost" id="cost"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Rs." required="" step="100">
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="purchaseDate"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Purchase
+                                                Date</label>
+                                            <input type="date" name="purchaseDate" id="purchaseDate"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                required="">
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="status"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                            <select id="status" name="status"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <option selected="">Select status</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                                <option value="Under Maintenance">Under Maintenance</option>
+                                                <option value="Disposed">Disposed</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="lab_id"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                Lab ID</label>
+                                            <select id="lab_id" name="lab_id"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                onchange="setDepartmentId()">
+                                                <!-- Populate department options from database -->
+                                                <% lab.forEach(lab=> { %>
+                                                    <option value="<%= lab.lab_id %>">
+                                                        <%= lab.name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <!-- <input type="hidden" id="lab_id_input" name="lab_id"> -->
+
+
+
+                                    </div>
+                                    <button type="submit"
+                                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Add new Asset
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchButton = document.getElementById('searchButton');
+            const clearButton = document.getElementById('clearButton');
+            const equipmentIdInput = document.getElementById('equipmentIdInput');
+
+            searchButton.addEventListener('click', function () {
+                const equipmentId = equipmentIdInput.value.trim();
+                if (equipmentId !== '') {
+                    // Hide equipment rows except the one with the specified equipment ID
+                    const rows = document.querySelectorAll('.equipment-row');
+                    rows.forEach(row => {
+                        const rowEquipmentId = row.dataset.equipmentId;
+                        if (rowEquipmentId !== equipmentId) {
+                            row.style.display = 'none';
+                        } else {
+                            row.style.display = '';
+                        }
+                    });
+                }
+            });
+
+            clearButton.addEventListener('click', function () {
+                equipmentIdInput.value = '';
+                // Show all equipment rows
+                const rows = document.querySelectorAll('.equipment-row');
+                rows.forEach(row => {
+                    row.style.display = '';
+                });
+            });
+        });
+
+
+
+
+
+
+        //deleterecord
+        // Function to handle deleting a record
+        function deleteRecord(equipmentId) {
+            // Show a confirmation dialog
+            if (confirm("Are you sure you want to delete this record?")) {
+                // If confirmed, make a request to delete the record
+                fetch('/deleteRecord', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ equipmentId: equipmentId })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // If deletion is successful, reload the page to reflect changes
+                            location.reload();
+                        } else {
+                            // If deletion fails, show an error message
+                            alert("Failed to delete the record.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting record:', error);
+                        alert("An error occurred while deleting the record.");
+                    });
+            }
+        }
+
+
+
+        function getdata(id) {
+            window.alert('get data: ' + id);
+        }
+
+
+
+
+        function editRecord(equipmentId) {
+            fetch(`/getRecord/${equipmentId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch record data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Populate the modal form fields with the retrieved data
+                    document.getElementById('name').value = data.name;
+                    document.getElementById('serialNumber').value = data.serial_number;
+                    document.getElementById('purchaseDate').value = data.purchase_date;
+                    document.getElementById('cost').value = data.cost;
+                    document.getElementById('specifications').value = data.specifications;
+                    document.getElementById('status').value = data.status;
+
+                    // Show the modal for editing
+                    toggleModal('crud-modal');
+                })
+                .catch(error => {
+                    console.log('Error fetching record data:', error);
+                    alert('Failed to fetch record data. Please try again.');
+                });
+        }
+
+
+        document.getElementById('generatePDF').addEventListener('click', function () {
+            // Make an AJAX POST request to generate the PDF
+            fetch('/generatePDF', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ /* Add form data here if needed */ })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // If the PDF is generated successfully, download it
+                        return response.blob();
+                    } else {
+                        throw new Error('Failed to generate PDF');
+                    }
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'generated_pdf.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                })
+                .catch(error => {
+                    console.error('Error generating PDF:', error);
+                    // Handle error here
+                });
+        });
+
+
+
+
+        // Function to show a success message popup
+        function showSuccessMessage() {
+            alert('Asset added successfully');
+
+        }
+
+
+
+        const setup = () => {
+            const getTheme = () => {
+                if (window.localStorage.getItem('dark')) {
+                    return JSON.parse(window.localStorage.getItem('dark'))
+                }
+                return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            }
+
+            const setTheme = (value) => {
+                window.localStorage.setItem('dark', value)
+            }
+
+            return {
+                loading: true,
+                isDark: getTheme(),
+                toggleTheme() {
+                    this.isDark = !this.isDark
+                    setTheme(this.isDark)
+                },
+            }
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "dbms-mini-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./public/style.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "express-session": "^1.18.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "mysql": "^2.18.1",
+    "open": "^10.0.4",
+    "orm": "^8.0.0",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.14.0"
+  }
+}

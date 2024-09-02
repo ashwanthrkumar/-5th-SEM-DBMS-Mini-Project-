@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project</title>
+</head>
+
+<body>
+    <h1>Edit Project</h1>
+    <form action="/update_project/<%= project.project_id %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= project.name %>" required><br><br>
+
+        <label for="fundingSource">Funding Source:</label>
+        <input type="text" id="fundingSource" name="fundingSource" value="<%= project.funding_source %>"
+            required><br><br>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" value="<%= formatDate(project.start_date) %>"
+            required><br><br>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" value="<%= formatDate(project.end_date) %>" required><br><br>
+
+        <label for="budget">Budget:</label>
+        <input type="number" id="budget" name="budget" value="<%= project.budget %>" required><br><br>
+
+        <label for="progress">Progress:</label>
+        <input type="number" id="progress" name="progress" value="<%= project.progress_percentage %>" required><br><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Active" <% if (project.status==='Active' ) { %> selected <% } %>>Active</option>
+            <option value="Completed" <% if (project.status==='Completed' ) { %> selected <% } %>>Completed</option>
+            <option value="Pending" <% if (project.status==='Pending' ) { %> selected <% } %>>Pending</option>
+            <option value="Cancelled" <% if (project.status==='Cancelled' ) { %> selected <% } %>>Cancelled</option>
+        </select><br><br>
+
+        <!-- Add input field for department_id -->
+        <!-- Add input field for department_id -->
+        <label for="departmentId">Department:</label>
+        <select id="departmentId" name="departmentId"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <!-- Populate department options from database -->
+            <% departments.forEach(department=> { %>
+                <option value="<%= department.department_id %>" <% if (project.department_id===department.department_id)
+                    { %> selected <% } %>>
+                        <%= department.name %>
+                </option>
+                <% }) %>
+        </select> <br> <br>
+
+        <button type="submit">Update Project</button>
+    </form>
+
+    <script>
+        // Function to format the date to Indian Standard Time (IST)
+        function formatDate(date) {
+            return new Date(date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }).split(',')[0];
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!-- edit_asset.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Asset</title>
+</head>
+
+<body>
+    <h1>Edit Asset</h1>
+    <form action="/update_asset/<%= asset.equipment_id %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= asset.name %>" required><br><br>
+
+        <label for="serialNumber">Serial Number:</label>
+        <input type="text" id="serialNumber" name="serialNumber" value="<%= asset.serial_number %>" required><br><br>
+
+        <label for="purchaseDate">Purchase Date:</label>
+        <!-- Format the purchase date to YYYY-MM-DD -->
+        <input type="date" id="purchaseDate" name="purchaseDate" value="<%= formatDate(asset.purchase_date) %>"
+            required><br><br>
+
+        <label for="cost">Cost:</label>
+        <input type="number" id="cost" name="cost" value="<%= asset.cost %>" required><br><br>
+
+
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Active" <% if (asset.status==='Active' ) { %> selected <% } %>>Active</option>
+            <option value="Inactive" <% if (asset.status==='Inactive' ) { %> selected <% } %>>Inactive</option>
+            <option value="Under Maintainance" <% if (asset.status==='Under Maintainance' ) { %> selected <% } %>>Under
+                    Maintainance</option>
+            <option value="Disposed" <% if (asset.status==='Disposed' ) { %> selected <% } %>>Disposed</option>
+        </select><br><br>
+        <!-- Add input field for department_id -->
+        <label for="lab_id">Lab:</label>
+        <select id="lab_id" name="lab_id"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <!-- Populate department options from database -->
+            <% lab.forEach(lab=> { %>
+                <option value="<%= lab.lab_id %>" <% if (asset.lab_id===lab.lab_id) { %> selected <% } %>>
+                        <%= lab.name %>
+                </option>
+                <% }) %>
+        </select> <br> <br>
+
+
+        <button type="submit">Update Asset</button>
+    </form>
+
+    <script>
+        // Function to format the date to Indian Standard Time (IST)
+        function formatDate(date) {
+            return new Date(date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }).split(',')[0];
+        }
+    </script>
+</body>
+
+</html>
